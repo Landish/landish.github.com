@@ -3,7 +3,63 @@ body {
     font-family: Helvetica, Arial, sans-serif;
     font-size: 100%;
     color:#666;
-    padding-top: 50px;
+    padding-top: 20px;
+}
+
+.ng-cloak {
+    background: red;
+}
+
+/* Loading */
+.loading {
+    background: url('../images/loading.gif') top center no-repeat;
+    min-height: 64px;
+    text-align: center;
+    margin-top: 50px;
+}
+
+.loading h3 {
+    font-weight: normal;
+    font-style: italic;
+    font-size: 14px;
+    padding-top: 100px;
+    color:red;
+}
+
+
+/* Tabs */
+.tabs {
+    margin: 0 auto 20px;
+    width: 940px;
+    text-align: center;
+}
+
+.tabs ul {
+    margin: 0;
+    padding: 0
+}
+
+.tabs ul li {
+    display: inline-block;
+    vertical-align: top;
+    margin-right: 5px;
+}
+
+.tabs ul li a {
+    background: #fff;
+    border-radius: 5px;
+    border:1px solid #ccc;
+    box-sizing:border-box;
+    display: block;
+    text-decoration: none;
+    color:#666;
+    padding: 10px 15px;
+}
+
+.tabs ul li.active a,
+.tabs ul li a:hover {
+    background: #f6f6f6;
+    text-decoration: underline;
 }
 
 /* Container */

@@ -1,42 +1,47 @@
 <!doctype html>
-<html lang="en" ng-app="app">
+<html lang="en" ng-app="GithubApp">
 <head>
 	<meta charset="UTF-8">
 	<title>Landish</title>
 	<link rel="stylesheet" href="assets/css/style.css">
-	<script src="assets/js/prefixfree.min.js"></script>
 </head>
-<body>
-	<div class="container">
+<body class="ng-cloak">
 
-		<div class="block">
-			<h2><a href="https://gist.github.com/Landish" target="_blank" title="Landish's Gists">Landish's Gists</a></h2>
-			<p>Useful Snippets for Your Web Projects</p>
-			<div class="date">Last Update: A month ago</div>
-		</div>
-		<!-- block -->
-
+	<div class="container" ng-controller="MainController">
 	
-		<div class="block">
-			<h2><a href="https://github.com/Landish/HTML5-Template" target="_blank">HTML5 Template</a></h2>
-			<p>Custom HTML5 Project Starter Kit Template</p>
-			<div class="date">Last Update: A month ago</div>
+		<nav class="tabs">
+			<ul>
+				<li class="active">
+					<a href="#repositories">Repositories</a>
+				</li>
+				<li>
+					<a href="#gists">Gists</a>
+				</li>
+			</ul>
+		</nav>
+		<!-- tabs -->		
+		
+
+		<div class="loading" ng-show="loading"><h3>{{ message }}</h3></div>
+		<!-- loading -->
+
+
+		<div class="list">
+
+			<div class="block" ng-repeat="r in repos | orderBy:'-updated_at'">
+				<h2><a href="{{ r.html_url }}" target="_blank" title="{{ r.name }}">{{ r.name }}</a></h2>
+				<p>{{ r.description }}</p>
+				<div class="date">Last Update: {{ r.updated_at | date }}</div>
+			</div>
+			<!-- block -->
+
 		</div>
-		<!-- block -->
-
-
-
-		<div class="block soon">
-			<h2>Coming Soon!</h2>
-			<p>New tools are on their way here..</p>
-			<div class="date">Last Update: It's not published yet..</div>
-		</div>
-		<!-- block -->
-
-
+		<!-- list -->
+		
 	</div>
 	<!-- container -->
 	<script src="assets/js/angular.min.js"></script>
 	<script src="assets/js/app.js"></script>
+	<script src="assets/js/prefixfree.min.js"></script>	
 </body>
 </html>
