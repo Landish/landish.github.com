@@ -1,22 +1,81 @@
+/**
+ * Initialize AngularJS Module
+ * @type {[type]}
+ */
 var APP = angular.module('GithubApp', []);
 
 
-APP.controller('MainController', ['$scope', '$http', function($scope, $http) {
+/**
+ * Title Function
+ * Replace Dashes with Space
+ * @return {[type]} [description]
+ */
+APP.filter('title', function() {
+	var regex = new RegExp('-', 'g');
+	return function(text) {
+		return text.replace(regex, ' ');
+	};
+});
 
-	$scope.repoUrl = 'https://api.github.com/users/Landish/repos?client_id=306c0c212db97ef0383f&client_secret=84027fe50405b0c4cf16943abf0e113710cd97ab';
-	$scope.gistsUrl = 'https://api.github.com/users/Landish/gists';
-	$scope.oAuth = 'https://api.github.com/user?token=84c077397157be4a464ea59448f59f17167310d2';
 
-	$scope.repos = [];
-	$scope.gists = [];
-	$scope.loading = true;
+/**
+ * Module Route Configuration
+ * @param  {[type]} $routeProvider [description]
+ * @return {[type]}                [description]
+ */
+APP.config(function($routeProvider) {
+	$routeProvider
 
-	$http.get($scope.repoUrl).success(function(data, status) {		
-		$scope.repos = data;
-		$scope.loading = false;
-	}).error(function(data, status) {
-		console.log(data);
-		$scope.message = data.message;
-	});
+		.when('/', {
+			templateUrl : 'assets/views/repos.html',
+			controller: 'ReposController'
+		})
 
-}]);
+		.when('/repositories', {
+			templateUrl : 'assets/views/repos.html',
+			controller: 'ReposController'
+		})
+		
+		.when('/gists', {
+			templateUrl : 'assets/views/gists.html',
+			controller: 'GistsController'
+		})
+
+		.otherwise({ redirectTo: '/' })
+});
+
+/**
+ * Loading
+ * @param  {[type]} $rootScope [description]
+ * @return {[type]}            [description]
+ */
+APP.service('Loading', function($rootScope) {
+
+	/**
+	 * Show Loading
+	 * @return {[type]} [description]
+	 */
+	this.show = function() {
+		$rootScope.loading = true;
+	};
+
+	/**
+	 * Hide Loading
+	 * @return {[type]} [description]
+	 */
+	this.hide = function() {
+		$rootScope.loading = false;
+	};
+
+	/**
+	 * Set Message and Show Loading
+	 * @param  {[type]} message [description]
+	 * @return {[type]}         [description]
+	 */
+	this.message = function( message ) {
+		$rootScope.message = message;
+		this.show();
+	};
+
+});
+

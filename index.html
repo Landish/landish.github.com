@@ -5,43 +5,32 @@
 	<title>Landish</title>
 	<link rel="stylesheet" href="assets/css/style.css">
 </head>
-<body class="ng-cloak">
+<body class="ng-cloak" ng-controller="MainController">
 
-	<div class="container" ng-controller="MainController">
+	<div class="container">
 	
 		<nav class="tabs">
 			<ul>
-				<li class="active">
-					<a href="#repositories">Repositories</a>
+				<li ng-class="{ active : tabs.repos.active }">
+					<a href="#/">Repositories</a>
 				</li>
-				<li>
-					<a href="#gists">Gists</a>
+				<li ng-class="{ active : tabs.gists.active }">
+					<a href="#/gists">Gists</a>
 				</li>
 			</ul>
 		</nav>
 		<!-- tabs -->		
 		
 
-		<div class="loading" ng-show="loading"><h3>{{ message }}</h3></div>
+		<div class="loading" ng-show="loading"><h3 ng-bind-html-unsafe="message"></h3></div>
 		<!-- loading -->
 
-
-		<div class="list">
-
-			<div class="block" ng-repeat="r in repos | orderBy:'-updated_at'">
-				<h2><a href="{{ r.html_url }}" target="_blank" title="{{ r.name }}">{{ r.name }}</a></h2>
-				<p>{{ r.description }}</p>
-				<div class="date">Last Update: {{ r.updated_at | date }}</div>
-			</div>
-			<!-- block -->
-
-		</div>
-		<!-- list -->
+		<div ng-view></div>
 		
 	</div>
 	<!-- container -->
 	<script src="assets/js/angular.min.js"></script>
 	<script src="assets/js/app.js"></script>
-	<script src="assets/js/prefixfree.min.js"></script>	
+	<script src="assets/js/controllers.js"></script>	
 </body>
 </html>
