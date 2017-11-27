@@ -1,36 +1,13 @@
-<!doctype html>
-<html lang="en" ng-app="GithubApp">
+<!DOCTYPE html>
+<html lang="en">
+
 <head>
 	<meta charset="UTF-8">
-	<title>Landish</title>
-	<link rel="stylesheet" href="assets/css/style.css?v1">
+	<meta http-equiv="refresh" content="0; url=https://ladolomidze.com/" />
+	<title>Lado Lomidze</title>
 </head>
-<body class="ng-cloak" ng-controller="MainController">
 
-	<div class="container">
-	
-		<nav class="tabs">
-			<ul>
-				<li ng-class="{ active : tabs.repos.active }">
-					<a href="#/">Repositories</a>
-				</li>
-				<li ng-class="{ active : tabs.gists.active }">
-					<a href="#/gists">Gists</a>
-				</li>
-			</ul>
-		</nav>
-		<!-- tabs -->		
-		
-
-		<div class="loading" ng-show="loading"><h3 ng-bind-html-unsafe="message"></h3></div>
-		<!-- loading -->
-
-		<div ng-view></div>
-		
-	</div>
-	<!-- container -->
-	<script src="assets/js/angular.min.js"></script>
-	<script src="assets/js/app.js"></script>
-	<script src="assets/js/controllers.js"></script>	
+<body>
 </body>
+
 </html>
